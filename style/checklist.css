@@ -1,0 +1,11 @@
+#comment-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.comment {
+    background-color: bisque;
+    padding: 15px;
+    border-radius: 10px;
+}
