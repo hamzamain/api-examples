@@ -16,10 +16,46 @@ const displayCommens = (data) =>{
         <p>email:${comment.email}</p>
         <p>email:${comment.body}</p>
         `
-        commentContainer.appendChild(commentDiv)
+        // commentContainer.appendChild(commentDiv)
     })
 
 }
 const comment = document.getElementsByClassName('comment');
 console.log(comment)
 comments();
+
+const users = () => {
+    fetch(`https://randomuser.me/api/?results=500`)
+    .then(res => res.json())
+    .then(data => displayUsers(data.results))
+    .catch(error => console.log(error))
+} 
+
+const displayUsers = (data) =>{
+    const userContainer = document.getElementById('user-container');
+    const user = data.forEach(user => {
+        console.log(user);
+        const userDiv = document.createElement('div');
+        userDiv.classList.add('col');
+        userDiv.innerHTML =`
+        <div class="card h-100">
+                <img src="${user.picture.large}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Name: ${user.name.first} ${user.name.first}</h5>
+                  <p class="card-text">Location: ${user.location.street.number}, ${user.location.street.name}, ${user.location.city}, ${user.location.state}, ${user.location.country}</p>
+                </div>
+              </div>
+        `
+        userContainer.appendChild(userDiv)
+    })
+}
+users();
+/* country
+: 
+"Mexico"
+postcode
+: 
+22753
+state
+: 
+"Baja California Sur" */
